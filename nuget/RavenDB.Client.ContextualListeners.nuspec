@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>RavenDB.Client.ContextualListeners</id>
+		<version>1.0</version>
+		<title>RavenDB Client that allows context to be passed into listeners</title>
+		<authors>Damian Hickey</authors>
+		<description>RavenDB.Client.ContextualListeners is a 3rd party bundle and not offically supported by Hibernating Rhinos.</description>
+		<language>en-US</language>
+		<licenseUrl>http://www.opensource.org/licenses/MIT</licenseUrl>
+		<projectUrl>https://github.com/damianh/RavenDB.Client.ContextualListeners</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<tags>nosql ravendb raven document database client</tags>
+		<dependencies>
+			<dependency id="RavenDB.Client" version="" />
+		</dependencies>
+		<iconUrl>http://static.ravendb.net/logo-for-nuget.png</iconUrl>
+	</metadata>
+</package>
