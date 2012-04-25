@@ -1,0 +1,10 @@
+*.suo
+*.sln.cache
+_ReSharper.*/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+src/packages/
+*.user
+*.dotCover
+build/

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven.Client.ContextualListeners", "Raven.Client.ContextualListeners\Raven.Client.ContextualListeners.csproj", "{D1ECF00F-2902-444E-8409-3E94D00A7A3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Raven.Client.ContextualListeners", "Tests.Raven.Client.ContextualListeners\Tests.Raven.Client.ContextualListeners.csproj", "{3E060E16-1CE2-430D-B9C3-E78782A040BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B8631DCC-AC77-40B6-B4DC-DF792627E408}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1ECF00F-2902-444E-8409-3E94D00A7A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1ECF00F-2902-444E-8409-3E94D00A7A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1ECF00F-2902-444E-8409-3E94D00A7A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1ECF00F-2902-444E-8409-3E94D00A7A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E060E16-1CE2-430D-B9C3-E78782A040BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E060E16-1CE2-430D-B9C3-E78782A040BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E060E16-1CE2-430D-B9C3-E78782A040BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E060E16-1CE2-430D-B9C3-E78782A040BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
