@@ -1,7 +1,7 @@
 RavenDB.Client.ContextualListeners
 ==================================
 
-A RavenDB client extension that passing of contextual information into client listeners. You can do this manually by doing something [similar to this](http://dhickey.ie/post/2012/02/12/Getting-contextual-state-into-a-RavenDBs-document-store-listener.aspx), or you can use this library!
+A RavenDB client extension that passing of contextual information into client listeners. You can do this manually by doing something [similar to this](http://dhickey.ie/post/2012/02/12/Getting-contextual-state-into-a-RavenDBs-document-store-listener.aspx), or you can use this library via [NuGet](https://www.nuget.org/packages/RavenDB.Client.ContextualListeners).
 
 There is a small piece about listeners [here](http://ravendb.net/docs/client-api/advanced/document-metadata), under the topic 'Manipulating metadata' but not much else at this moment in time. Basically, listeners allow you to hook into all document operations that occur in each session. The current design of the listeners is that their lifecyle is singleton with respect to the document database, making it a little tricky to pass in contextual information.
 
