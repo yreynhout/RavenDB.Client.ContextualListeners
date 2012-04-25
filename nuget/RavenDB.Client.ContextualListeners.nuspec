@@ -5,7 +5,7 @@
 		<version>1.0</version>
 		<title>RavenDB Client Contextual Listeners</title>
 		<authors>Damian Hickey</authors>
-		<description>Allows context to be passed into a document store listener. Supports standard application and asp.net scenarios. RavenDB.Client.ContextualListeners is a 3rd party extension and not offically supported by Hibernating Rhinos.</description>
+		<description>Allows context to be passed into a client listener. Supports standard application and asp.net scenarios. RavenDB.Client.ContextualListeners is a 3rd party extension and not offically supported by Hibernating Rhinos.</description>
 		<language>en-US</language>
 		<licenseUrl>http://www.opensource.org/licenses/MIT</licenseUrl>
 		<projectUrl>https://github.com/damianh/RavenDB.Client.ContextualListeners</projectUrl>
