@@ -55,7 +55,7 @@ public class UserNameContext : AbstractDocumentStoreListenerContext
 }
 </pre>
 
-Register your desired listeners that will be aware of your contexts:
+Register your the listener that will be aware of your context:
 
 <pre>
 var documentStore = new DocumentStore()
@@ -64,11 +64,12 @@ var documentStore = new DocumentStore()
 };
 
 // can be called after .Initialize(), doesn't matter
-documentStore.RegisterListener(new ContextualDocumentStoreListener<UserNameContext>()); 
+documentStore.RegisterListener(new ContextualDocumentStoreListener&lt;UserNameContext&gt;()); 
 documentStore.Initialize();
 </pre>
 
 And the sweet bit.. just open a new context before you open a session:
+
 <pre>
 using(new UserNameContext("Damian Hickey"))
 using(var session = documentStore.OpenSession())
@@ -76,5 +77,4 @@ using(var session = documentStore.OpenSession())
 	session.Store(new Doc());
 	session.SaveChanges();
 }
-</pre>
 </pre>
