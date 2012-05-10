@@ -1,5 +1,6 @@
 namespace Raven.Client.ContextualListeners
 {
+	using System.Collections.Generic;
 	using Raven.Client.Listeners;
 	using Raven.Json.Linq;
 
@@ -8,19 +9,19 @@ namespace Raven.Client.ContextualListeners
 	{
 		public virtual void EntityToDocument(object entity, RavenJObject document, RavenJObject metadata)
 		{
-			object context;
+			Stack<object> context;
 			if (LocalStorageProvider.Get().Contexts.TryGetValue(typeof(T), out context))
 			{
-				((IDocumentConversionListener)context).EntityToDocument(entity, document, metadata);
+				((IDocumentConversionListener)context.Peek()).EntityToDocument(entity, document, metadata);
 			}
 		}
 
 		public virtual void DocumentToEntity(object entity, RavenJObject document, RavenJObject metadata)
 		{
-			object context;
+			Stack<object> context;
 			if (LocalStorageProvider.Get().Contexts.TryGetValue(typeof(T), out context))
 			{
-				((IDocumentConversionListener)context).DocumentToEntity(entity, document, metadata);
+				((IDocumentConversionListener)context.Peek()).DocumentToEntity(entity, document, metadata);
 			}
 		}
 	}

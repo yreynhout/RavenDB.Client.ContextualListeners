@@ -34,11 +34,11 @@ namespace Tests.Raven.Client.ContextualListeners
 		}
 
 		[Fact]
-		public void When_have_duplicate_context_Then_should_throw()
+		public void When_have_duplicate_context_Then_should_not_throw()
 		{
 			using(new DeleteContext())
 			{
-				Assert.Throws<ArgumentException>(() => new DeleteContext());
+				Assert.DoesNotThrow(() => new DeleteContext());
 			}
 		}
 	}

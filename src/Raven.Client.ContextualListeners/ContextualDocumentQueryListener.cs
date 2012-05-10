@@ -1,5 +1,6 @@
 namespace Raven.Client.ContextualListeners
 {
+	using System.Collections.Generic;
 	using Raven.Client.Listeners;
 
 	public class ContextualDocumentQueryListener<T> : IDocumentQueryListener
@@ -7,10 +8,10 @@ namespace Raven.Client.ContextualListeners
 	{
 		public virtual void BeforeQueryExecuted(IDocumentQueryCustomization queryCustomization)
 		{
-			object context;
+			Stack<object> context;
 			if (LocalStorageProvider.Get().Contexts.TryGetValue(typeof(T), out context))
 			{
-				((IDocumentQueryListener)context).BeforeQueryExecuted(queryCustomization);
+				((IDocumentQueryListener)context.Peek()).BeforeQueryExecuted(queryCustomization);
 			}
 		}
 	}

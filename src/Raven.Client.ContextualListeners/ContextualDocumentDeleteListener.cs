@@ -1,5 +1,6 @@
 namespace Raven.Client.ContextualListeners
 {
+	using System.Collections.Generic;
 	using Raven.Client.Listeners;
 	using Raven.Json.Linq;
 
@@ -8,10 +9,10 @@ namespace Raven.Client.ContextualListeners
 	{
 		public virtual void BeforeDelete(string key, object entityInstance, RavenJObject metadata)
 		{
-			object context;
+			Stack<object> context;
 			if (LocalStorageProvider.Get().Contexts.TryGetValue(typeof(T), out context))
 			{
-				((IDocumentDeleteListener)context).BeforeDelete(key, entityInstance, metadata);
+				((IDocumentDeleteListener)context.Peek()).BeforeDelete(key, entityInstance, metadata);
 			}
 		}
 	}

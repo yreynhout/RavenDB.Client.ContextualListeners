@@ -28,11 +28,11 @@ namespace Tests.Raven.Client.ContextualListeners
 		}
 
 		[Fact]
-		public void When_have_duplicate_context_Then_should_throw()
+		public void When_have_duplicate_context_Then_should_not_throw()
 		{
 			using(new StoreContext())
 			{
-				Assert.Throws<ArgumentException>(() => new StoreContext());
+				Assert.DoesNotThrow(() => new StoreContext());
 			}
 		}
 
@@ -44,6 +44,31 @@ namespace Tests.Raven.Client.ContextualListeners
 				var doc = new Doc { Id = "Doc" };
 				session.Store(doc);
 				Assert.DoesNotThrow(() => session.SaveChanges());
+			}
+		}
+
+		[Fact]
+		public void Should_support_nested_sessions()
+		{
+			using (var context1 = new StoreContext())
+			using (IDocumentSession session1 = DocumentStore.OpenSession())
+			{
+				var doc1 = new Doc { Id = "Doc1" };
+				session1.Store(doc1);
+
+				using (var context2 = new StoreContext())
+				using (IDocumentSession session2 = DocumentStore.OpenSession())
+				{
+					var doc2 = new Doc { Id = "Doc2" };
+					session2.Store(doc2);
+					session2.SaveChanges();
+					Assert.True(context2.BeforeStoreCalled);
+					Assert.True(context2.AfterStoreCalled);
+				}
+
+				session1.SaveChanges();
+				Assert.True(context1.BeforeStoreCalled);
+				Assert.True(context1.AfterStoreCalled);
 			}
 		}
 	}

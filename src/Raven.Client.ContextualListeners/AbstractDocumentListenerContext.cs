@@ -1,17 +1,30 @@
 namespace Raven.Client.ContextualListeners
 {
 	using System;
+	using System.Collections.Generic;
 
 	public abstract class AbstractDocumentListenerContext : IDisposable
 	{
 		protected AbstractDocumentListenerContext()
 		{
-			LocalStorageProvider.Get().Contexts.Add(GetType(), this);
+			var contexts = LocalStorageProvider.Get().Contexts;
+			var type = GetType();
+			if (!contexts.ContainsKey(type))
+			{
+				contexts.Add(type, new Stack<object>());
+			}
+			contexts[type].Push(this);
 		}
 
 		public void Dispose()
 		{
-			LocalStorageProvider.Get().Contexts.Remove(GetType());
+			var contexts = LocalStorageProvider.Get().Contexts;
+			var type = GetType();
+			contexts[type].Pop();
+			if(contexts[type].Count == 0)
+			{
+				contexts.Remove(type);
+			}
 		}
 	}
 }

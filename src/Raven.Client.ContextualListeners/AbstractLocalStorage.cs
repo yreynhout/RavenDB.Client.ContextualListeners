@@ -5,7 +5,7 @@ namespace Raven.Client.ContextualListeners
 
 	internal abstract class AbstractLocalStorage
 	{
-		public Dictionary<Type, object> Contexts
+		public Dictionary<Type, Stack<object>> Contexts
 		{
 			get
 			{
@@ -13,6 +13,6 @@ namespace Raven.Client.ContextualListeners
 			}
 		}
 
-		protected abstract Dictionary<Type, object> GetContexts();
+		protected abstract Dictionary<Type, Stack<object>> GetContexts();
 	}
 }
