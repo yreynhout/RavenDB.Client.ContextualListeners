@@ -5,9 +5,9 @@ namespace Raven.Client.ContextualListeners
 
 	public abstract class AbstractDocumentStoreListenerContext : AbstractDocumentListenerContext, IDocumentStoreListener
 	{
-		bool IDocumentStoreListener.BeforeStore(string key, object entityInstance, RavenJObject metadata)
+		bool IDocumentStoreListener.BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
 		{
-			return BeforeStore(key, entityInstance, metadata);
+			return BeforeStore(key, entityInstance, metadata, original);
 		}
 
 		void IDocumentStoreListener.AfterStore(string key, object entityInstance, RavenJObject metadata)
@@ -17,6 +17,6 @@ namespace Raven.Client.ContextualListeners
 
 		protected abstract void AfterStore(string key, object entityInstance, RavenJObject metadata);
 
-		protected abstract bool BeforeStore(string key, object entityInstance, RavenJObject metadata);
+		protected abstract bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original);
 	}
 }

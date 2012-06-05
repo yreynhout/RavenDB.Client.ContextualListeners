@@ -19,7 +19,7 @@
 			protected override void AfterStore(string key, object entityInstance, RavenJObject metadata)
 			{}
 
-			protected override bool BeforeStore(string key, object entityInstance, RavenJObject metadata)
+			protected override bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
 			{
 				metadata.Add("UserName", RavenJToken.FromObject(_userName));
 				return false; //return true if you modify the entityInstance

@@ -9,7 +9,7 @@ namespace Tests.Raven.Client.ContextualListeners.Contexts
 
 		internal bool AfterStoreCalled { get; private set; }
 
-		protected override bool BeforeStore(string key, object entityInstance, RavenJObject metadata)
+		protected override bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
 		{
 			BeforeStoreCalled = true;
 			return false;
