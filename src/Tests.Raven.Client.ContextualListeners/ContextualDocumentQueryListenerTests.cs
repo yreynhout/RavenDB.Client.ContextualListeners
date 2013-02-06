@@ -20,7 +20,7 @@ namespace Tests.Raven.Client.ContextualListeners
 		{
 			using (IDocumentSession session = DocumentStore.OpenSession())
 			{
-				var doc = new Doc { Id = "Doc" };
+				var doc = new Doc { Id = "Doc", Name = "Name"};
 				session.Store(doc);
 				session.SaveChanges();
 			}
@@ -28,7 +28,7 @@ namespace Tests.Raven.Client.ContextualListeners
 			using (var context = new QueryContext())
 			using (IDocumentSession session = DocumentStore.OpenSession())
 			{
-				session.Query<Doc>().Where(d => d.Id == "Doc").Customize(c => c.WaitForNonStaleResultsAsOfLastWrite()).ToList();
+				session.Query<Doc>().Where(d => d.Name == "Name").Customize(c => c.WaitForNonStaleResultsAsOfLastWrite()).ToList();
 				Assert.True(context.BeforeQueryExecutedCalled);
 			}
 		}
