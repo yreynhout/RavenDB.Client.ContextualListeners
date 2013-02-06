@@ -4,5 +4,5 @@ param(
 	)
 
 Import-Module .\scripts\psake.psm1
-Invoke-Psake .\scripts\default.ps1 default -framework "4.0" -properties @{ buildNumber=$buildNumber }
+Invoke-Psake .\scripts\default.ps1 default -framework "4.0x64" -properties @{ buildNumber=$buildNumber }
 Remove-Module psake

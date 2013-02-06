@@ -3,7 +3,7 @@ properties {
 	$build_dir = "$base_dir\build"
 	$src_dir = "$base_dir\src"
 	$sln_file = "$base_dir\src\RavenDB.Client.ContextualListeners.sln"
-	$version = "1.0"
+	$version = "2.0"
 	$tools_dir = "$base_dir\tools"
 	$buildNumber = 0
 }
