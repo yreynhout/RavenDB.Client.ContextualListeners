@@ -40,25 +40,9 @@ namespace Tests.Raven.Client.ContextualListeners
         public void When_have_duplicate_context_Then_should_not_throw()
         {
             using (new QueryContext())
-            {
-                Assert.DoesNotThrow(() => new QueryContext());
+            { 
+                Assert.DoesNotThrow(() => new QueryContext().Dispose());
             }
-        }
-    }
-
-    public class HttpContextualDocumentQueryListenerTests : ContextualDocumentQueryListenerTests
-    {
-        private readonly IDisposable _request;
-
-        public HttpContextualDocumentQueryListenerTests()
-        {
-            _request = HttpContextHelper.SimulateRequest();
-        }
-
-        public override void Dispose()
-        {
-            _request.Dispose();
-            base.Dispose();
         }
     }
 }

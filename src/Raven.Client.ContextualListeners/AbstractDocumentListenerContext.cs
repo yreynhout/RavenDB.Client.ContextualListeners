@@ -7,7 +7,7 @@ namespace Raven.Client.ContextualListeners
     {
         protected AbstractDocumentListenerContext()
         {
-            Dictionary<Type, Stack<object>> contexts = LocalStorageProvider.Get().Contexts;
+            Dictionary<Type, Stack<object>> contexts = CallContextLogicalStorage.GetContexts();
             Type type = GetType();
             if (!contexts.ContainsKey(type))
             {
@@ -18,7 +18,7 @@ namespace Raven.Client.ContextualListeners
 
         public void Dispose()
         {
-            Dictionary<Type, Stack<object>> contexts = LocalStorageProvider.Get().Contexts;
+            Dictionary<Type, Stack<object>> contexts = CallContextLogicalStorage.GetContexts();
             Type type = GetType();
             contexts[type].Pop();
             if (contexts[type].Count == 0)

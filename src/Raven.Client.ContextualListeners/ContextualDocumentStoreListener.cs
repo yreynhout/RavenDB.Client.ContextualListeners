@@ -10,7 +10,7 @@ namespace Raven.Client.ContextualListeners
         public virtual bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
         {
             Stack<object> context;
-            if (!LocalStorageProvider.Get().Contexts.TryGetValue(typeof (T), out context))
+            if (!CallContextLogicalStorage.GetContexts().TryGetValue(typeof(T), out context))
             {
                 return false;
             }
@@ -20,7 +20,7 @@ namespace Raven.Client.ContextualListeners
         public virtual void AfterStore(string key, object entityInstance, RavenJObject metadata)
         {
             Stack<object> context;
-            if (LocalStorageProvider.Get().Contexts.TryGetValue(typeof (T), out context))
+            if (CallContextLogicalStorage.GetContexts().TryGetValue(typeof(T), out context))
             {
                 ((IDocumentStoreListener) context.Peek()).AfterStore(key, entityInstance, metadata);
             }

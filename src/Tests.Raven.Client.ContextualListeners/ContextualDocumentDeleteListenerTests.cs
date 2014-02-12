@@ -38,24 +38,8 @@ namespace Tests.Raven.Client.ContextualListeners
         {
             using (new DeleteContext())
             {
-                Assert.DoesNotThrow(() => new DeleteContext());
+                Assert.DoesNotThrow(() => new DeleteContext().Dispose());
             }
-        }
-    }
-
-    public class HttpContextualDocumentDeleteListenerTests : ContextualDocumentDeleteListenerTests
-    {
-        private readonly IDisposable _request;
-
-        public HttpContextualDocumentDeleteListenerTests()
-        {
-            _request = HttpContextHelper.SimulateRequest();
-        }
-
-        public override void Dispose()
-        {
-            _request.Dispose();
-            base.Dispose();
         }
     }
 }

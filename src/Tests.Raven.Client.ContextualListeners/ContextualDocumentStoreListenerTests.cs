@@ -32,7 +32,7 @@ namespace Tests.Raven.Client.ContextualListeners
         {
             using (new StoreContext())
             {
-                Assert.DoesNotThrow(() => new StoreContext());
+                Assert.DoesNotThrow(() => new StoreContext().Dispose());
             }
         }
 
@@ -43,7 +43,7 @@ namespace Tests.Raven.Client.ContextualListeners
             {
                 var doc = new Doc {Id = "Doc"};
                 session.Store(doc);
-                Assert.DoesNotThrow(() => session.SaveChanges());
+                Assert.DoesNotThrow(session.SaveChanges);
             }
         }
 
@@ -70,22 +70,6 @@ namespace Tests.Raven.Client.ContextualListeners
                 Assert.True(context1.BeforeStoreCalled);
                 Assert.True(context1.AfterStoreCalled);
             }
-        }
-    }
-
-    public class HttpContextualDocumentStoreListenerTests : ContextualDocumentStoreListenerTests
-    {
-        private readonly IDisposable _request;
-
-        public HttpContextualDocumentStoreListenerTests()
-        {
-            _request = HttpContextHelper.SimulateRequest();
-        }
-
-        public override void Dispose()
-        {
-            _request.Dispose();
-            base.Dispose();
         }
     }
 }
