@@ -72,9 +72,9 @@ And the sweet bit.. just open a new context before you open a session:
 
 <pre>
 using(new UserNameContext("Damian Hickey"))
-using(var session = documentStore.OpenSession())
+using(var session = documentStore.OpenAsyncSession())
 {
-	session.Store(new Doc());
-	session.SaveChanges();
+	await session.StoreAsync(new Doc());
+	await session.SaveChangesAsync();
 }
 </pre>
