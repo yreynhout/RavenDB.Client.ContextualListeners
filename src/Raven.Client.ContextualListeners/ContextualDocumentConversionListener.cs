@@ -1,9 +1,9 @@
+using System.Collections.Generic;
+using Raven.Client.Listeners;
+using Raven.Json.Linq;
+
 namespace Raven.Client.ContextualListeners
 {
-    using System.Collections.Generic;
-    using Json.Linq;
-    using Listeners;
-
     public class ContextualDocumentConversionListener<T> : IDocumentConversionListener
         where T : AbstractDocumentConversionListenerContext
     {

@@ -1,19 +1,19 @@
+using Raven.Client.Listeners;
+using Raven.Json.Linq;
+
 namespace Raven.Client.ContextualListeners
 {
-    using Json.Linq;
-    using Listeners;
-
     public abstract class AbstractDocumentConversionListenerContext : AbstractDocumentListenerContext,
-                                                                      IDocumentConversionListener
+        IDocumentConversionListener
     {
         void IDocumentConversionListener.EntityToDocument(string key, object entity, RavenJObject document,
-                                                          RavenJObject metadata)
+            RavenJObject metadata)
         {
             EntityToDocument(key, entity, document, metadata);
         }
 
         void IDocumentConversionListener.DocumentToEntity(string key, object entity, RavenJObject document,
-                                                          RavenJObject metadata)
+            RavenJObject metadata)
         {
             DocumentToEntity(key, entity, document, metadata);
         }

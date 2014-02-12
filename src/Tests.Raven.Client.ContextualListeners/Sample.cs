@@ -1,50 +1,53 @@
-﻿namespace Tests.Raven.Client.ContextualListeners
+﻿using Raven.Client;
+using Raven.Client.ContextualListeners;
+using Raven.Client.Document;
+using Raven.Json.Linq;
+
+namespace Tests.Raven.Client.ContextualListeners
 {
-	using global::Raven.Client.ContextualListeners;
-	using global::Raven.Client.Document;
-	using global::Raven.Client.Embedded;
-	using global::Raven.Json.Linq;
+    public class Sample
+    {
+        public class MyApp
+        {
+            public MyApp()
+            {
+                var documentStore = new DocumentStore
+                {
+                    Url = "http://server"
+                };
 
-	public class Sample
-	{
-		public class UserNameContext : AbstractDocumentStoreListenerContext
-		{
-			private readonly string _userName;
+                documentStore.RegisterListener(new ContextualDocumentStoreListener<UserNameContext>());
+                    // can be called after .Initialize(), doesn't matter
+                documentStore.Initialize();
 
-			public UserNameContext(string userName)
-			{
-				_userName = userName;
-			}
+                using (new UserNameContext("Damian Hickey"))
+                using (IDocumentSession session = documentStore.OpenSession())
+                {
+                    session.Store(new Doc());
+                    session.SaveChanges();
+                }
+            }
+        }
 
-			protected override void AfterStore(string key, object entityInstance, RavenJObject metadata)
-			{}
+        public class UserNameContext : AbstractDocumentStoreListenerContext
+        {
+            private readonly string _userName;
 
-			protected override bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
-			{
-				metadata.Add("UserName", RavenJToken.FromObject(_userName));
-				return false; //return true if you modify the entityInstance
-			}
-		}
+            public UserNameContext(string userName)
+            {
+                _userName = userName;
+            }
 
-		public class MyApp
-		{
-			public MyApp()
-			{
-				var documentStore = new DocumentStore()
-				{
-					Url = "http://server"
-				};
+            protected override void AfterStore(string key, object entityInstance, RavenJObject metadata)
+            {
+            }
 
-				documentStore.RegisterListener(new ContextualDocumentStoreListener<UserNameContext>()); // can be called after .Initialize(), doesn't matter
-				documentStore.Initialize();
-
-				using(new UserNameContext("Damian Hickey"))
-				using(var session = documentStore.OpenSession())
-				{
-					session.Store(new Doc());
-					session.SaveChanges();
-				}
-			}
-		}
-	}
+            protected override bool BeforeStore(string key, object entityInstance, RavenJObject metadata,
+                RavenJObject original)
+            {
+                metadata.Add("UserName", RavenJToken.FromObject(_userName));
+                return false; //return true if you modify the entityInstance
+            }
+        }
+    }
 }

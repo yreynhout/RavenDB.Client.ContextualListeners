@@ -1,8 +1,8 @@
+using Raven.Client.ContextualListeners;
+using Raven.Json.Linq;
+
 namespace Tests.Raven.Client.ContextualListeners.Contexts
 {
-    using global::Raven.Client.ContextualListeners;
-    using global::Raven.Json.Linq;
-
     internal class ConversionContext : AbstractDocumentConversionListenerContext
     {
         internal bool DocumentToEntityCalled { get; private set; }
